@@ -1,0 +1,10 @@
+docker login -u rushig71
+docker tag try-six:latest rushig71/test:latest
+docker push rushig71/test:latest
+
+//replace [rushig71] with your username when doing it for your acc
+
+dckr_pat_VgVr-6UGTLvgejVAZNdjGPnZ1v0
+
+// mysql run file:
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=pass -v testvolume:/var/lib/mysql -p 3306:3306 mysql

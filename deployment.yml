@@ -1,0 +1,60 @@
+ - apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: default-1695288421883
+  spec:
+    finalizers:
+      - kubernetes
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: rushig71
+    namespace: default-1695288421883
+  imagePullSecrets:
+    name: rushig71-secret
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: rushig71
+    template:
+      metadata:
+        labels:
+          app: rushig71
+      spec:
+        nodeSelector:
+          kubernetes.io/os: linux
+        containers:
+          - name: rushig71
+            image: docker.io/rushig71/mock01:latest
+            ports:
+              - containerPort: 80
+            resources:
+              requests:
+                cpu: '0'
+                memory: '0'
+              limits:
+                cpu: '256'
+                memory: 11400G
+- apiVersion: v1
+  kind: Service
+  metadata:
+    name: rushig71-service
+    namespace: default-1695288421883
+  spec:
+    type: LoadBalancer
+    ports:
+      - targetPort: 80
+        name: port80
+        port: 80
+        protocol: TCP
+    selector:
+      app: rushig71
+- apiVersion: v1
+  kind: Secret
+  data:
+    .dockerconfigjson: >-
+      eyJhdXRocyI6eyJkb2NrZXIuaW8iOnsidXNlcm5hbWUiOiJydXNoaWc3MSIsInBhc3N3b3JkIjoiZGNrcl9wYXRfQkZzZ2djU0IzOHU2MlpRRDFaQzVqTmxFSzlZIiwiYXV0aCI6ImNuVnphR2xuTnpFNlpHTnJjbDl3WVhSZlFrWnpaMmRqVTBJek9IVTJNbHBSUkRGYVF6VnFUbXhGU3psWiJ9fX0=
+  metadata:
+    name: rushig71-secret
+    namespace: default-1695288421883
