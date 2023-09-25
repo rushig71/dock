@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: kubeacr0071.azurecr.io/nginx:v1
+        image: kubeacr0071.azurecr.io/mock:v1
         ports:
         - containerPort: 80
