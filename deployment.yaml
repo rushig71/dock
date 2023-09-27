@@ -16,6 +16,9 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: kubeacr0071.azurecr.io/mock:v1
+        image: kubeacr0071.azurecr.io/mock:${TAG:- latest}
+        env:
+        - name: TAG
+          value: "latest"
         ports:
         - containerPort: 80
